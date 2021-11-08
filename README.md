@@ -15,3 +15,5 @@
     }
 ```
  - vuex集成
+# 更多文档
+ - 查看语雀文档 https://www.yuque.com/docs/share/ae435e31-889c-4cce-adae-4721133fc1d7?# 《taro-vue3-project》
