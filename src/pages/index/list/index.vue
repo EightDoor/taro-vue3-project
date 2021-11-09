@@ -19,9 +19,9 @@
 </template>
 <script lang="ts">
 import {defineComponent, reactive, onMounted} from 'vue';
-import NavBar from '@/src/components/NavBar/index.vue';
-import ListLoading, { ListLoadingType } from '@/src/components/ListLoading/index.vue';
-import log from "@/src/utils/log";
+import NavBar from '@src/components/NavBar/index.vue';
+import ListLoading, { ListLoadingType } from '@src/components/ListLoading/index.vue';
+import log from "@src/utils/log";
 
 
 export default defineComponent({

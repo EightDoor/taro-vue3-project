@@ -16,7 +16,7 @@
 <script lang="ts">
 import styles from './index.module.scss';
 import {navigateTo} from '@tarojs/taro';
-import NavBar from '@/src/components/NavBar/index.vue';
+import NavBar from '@src/components/NavBar/index.vue';
 
 export default {
   name: 'Index',
