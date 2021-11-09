@@ -1,6 +1,8 @@
 <template>
   <scroll-view :class="styles.c_height" :scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll" :scroll-top="scrollTop">
-    <slot/>
+    <view :class="styles.content_slot">
+      <slot/>
+    </view>
     <nut-divider dashed>
       {{refreshHasMore?loadMoreLoadingText: loadNoMore}}
     </nut-divider>

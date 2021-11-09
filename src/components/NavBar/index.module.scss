@@ -1,9 +1,11 @@
 .c_height {
-  height: calc(100vh - 87px);
+  height: calc(100vh - 98px);
 }
 
 .content {
   @extend .c_height;
   overflow-y: scroll;
+}
+.content_slot {
   padding: 15px;
 }
