@@ -1,6 +1,9 @@
 .c_height {
   height: calc(100vh - 98px);
 }
+.c_height_other {
+  height: 100vh;
+}
 
 .content {
   @extend .c_height;

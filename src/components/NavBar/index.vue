@@ -1,8 +1,8 @@
 <template>
   <view>
-    <nut-navbar @on-click-title="titleClick" @on-click-right="rightClick" @on-click-back="backEvent" :left-show="leftShow" :desc="desc" :title="title" :tit-icon="titIcon" :icon="icon"></nut-navbar>
+    <nut-navbar v-if="isNavBarShow()" @on-click-title="titleClick" @on-click-right="rightClick" @on-click-back="backEvent" :left-show="leftShow" :desc="desc" :title="title" :tit-icon="titIcon" :icon="icon"></nut-navbar>
 
-    <view :class="styles.content">
+    <view :class="isNavBarShow()?styles.content: styles.c_height_other">
       <slot/>
     </view>
   </view>
@@ -10,6 +10,7 @@
 <script lang="ts">
 import {defineComponent} from 'vue';
 import {navigateBack} from '@tarojs/taro';
+import compatible from '@/src/components/compatible';
 import  styles from './index.module.scss'
 
 export default defineComponent({
@@ -52,7 +53,8 @@ export default defineComponent({
       emit("backEvent")
     }
 
-    function handleClick() {
+    function isNavBarShow() {
+      return compatible.isCustomHeader;
     }
 
     return {
@@ -60,7 +62,7 @@ export default defineComponent({
       rightClick,
       backEvent,
 
-      handleClick,
+      isNavBarShow,
 
       styles,
     }

@@ -1,5 +1,5 @@
 <template>
-  <scroll-view :class="styles.c_height" :scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll" :scroll-top="scrollTop">
+  <scroll-view :class="isNavBarShow()?styles.content: styles.c_height_other" :scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll" :scroll-top="scrollTop">
     <view :class="styles.content_slot">
       <slot/>
     </view>
@@ -14,6 +14,7 @@ import utils from '@/src/utils';
 import  styles from '../NavBar/index.module.scss';
 import {BaseEventOrigFunction} from "@tarojs/components";
 import log from "@/src/utils/log";
+import compatible from "@/src/components/compatible";
 
 export interface ListLoadingType {
   defaultPageSize?: number;
@@ -112,6 +113,10 @@ export default defineComponent({
         isFirst.value = true;
       }
     })
+
+    function isNavBarShow() {
+      return compatible.isCustomHeader;
+    }
     return {
       refreshLoadMore,
       refreshHasMore,
@@ -124,7 +129,9 @@ export default defineComponent({
       upper,
       lower,
       scroll,
-      scrollTop
+      scrollTop,
+
+      isNavBarShow,
     };
   }
 })
