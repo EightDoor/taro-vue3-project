@@ -6,6 +6,9 @@
       <view>
         <nut-button type="info" @click="goToVuex">vuex</nut-button>
       </view>
+      <view>
+        <nut-button type="info" @click="goToListLoading">上拉加载，下拉刷新</nut-button>
+      </view>
     </view>
   </nav-bar>
 </template>
@@ -27,14 +30,17 @@ export default {
         url: '/pages/index/counter/index'
       })
     }
+
+    function goToListLoading() {
+      navigateTo({
+        url: '/pages/index/list/index',
+      })
+    }
     return {
       styles,
-      goToVuex
+      goToVuex,
+      goToListLoading
     }
   }
 }
 </script>
-
-<style lang="scss">
-
-</style>

@@ -1,8 +1,10 @@
 <template>
  <nav-bar title="vuex">
-   <nut-button type="primary" @click="add">增加</nut-button>
-   <view>
-     <text>{{count}}</text>
+   <view :class="styles.counter_height">
+     <nut-button type="primary" @click="add">增加</nut-button>
+     <view>
+       <text>{{count}}</text>
+     </view>
    </view>
  </nav-bar>
 </template>
@@ -10,6 +12,7 @@
 import {defineComponent, computed} from 'vue';
 import {useStore} from 'vuex';
 import NavBar from '@/src/components/NavBar/index.vue';
+import styles from './index.module.scss';
 
 export default defineComponent({
   name: 'Counter',
@@ -23,11 +26,9 @@ export default defineComponent({
     }
     return {
       add,
-      count: computed(() => store.state.counter.count)
+      count: computed(() => store.state.counter.count),
+      styles,
     }
   }
 })
 </script>
-<style lang="scss">
-
-</style>
