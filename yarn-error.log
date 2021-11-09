@@ -1,8 +1,8 @@
 Arguments: 
-  /Users/zhoukai/.nvm/versions/node/v16.13.0/bin/node /Users/zhoukai/.nvm/versions/node/v16.13.0/bin/yarn set version berry
+  /Users/zhoukai/.nvm/versions/node/v16.13.0/bin/node /Users/zhoukai/.nvm/versions/node/v16.13.0/bin/yarn
 
 PATH: 
-  /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home//bin:/opt/flutter/bin:/Users/zhoukai/.nvm/versions/node/v16.13.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:
+  /Library/Java/JavaVirtualMachines/jdk1.8.0_202.jdk/Contents/Home//bin:/opt/flutter/bin:/Users/zhoukai/.nvm/versions/node/v16.13.0/bin:/opt/homebrew/bin:/opt/homebrew/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin:/Users/zhoukai/Desktop/my-project/taro-vue3-project/node_modules/.bin:
 
 Yarn version: 
   1.22.17
@@ -14,8 +14,7 @@ Platform:
   darwin arm64
 
 Trace: 
-  Error: connect ECONNREFUSED 0.0.0.0:443
-      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1161:16)
+  Error: EEXIST: file already exists, mkdir '/Users/zhoukai/Desktop/my-project/taro-vue3-project/node_modules/@tarojs/transformer-wx/node_modules/inquirer/node_modules'
 
 npm manifest: 
   {
@@ -55,31 +54,33 @@ npm manifest:
     "license": "MIT",
     "dependencies": {
       "@babel/runtime": "^7.7.7",
-      "@tarojs/runtime": "3.3.12",
-      "@tarojs/taro": "3.3.12",
+      "@nutui/nutui-taro": "^3.1.8",
       "@tarojs/components": "3.3.12",
       "@tarojs/plugin-html": "3.3.12",
+      "@tarojs/runtime": "3.3.12",
+      "@tarojs/taro": "3.3.12",
       "vue": "^3.0.0",
-      "@nutui/nutui-taro": "^3.1.8"
+      "vuex": "^4.0.2"
     },
     "devDependencies": {
-      "@types/webpack-env": "^1.13.6",
-      "@tarojs/mini-runner": "3.3.12",
-      "@tarojs/webpack-runner": "3.3.12",
       "@babel/core": "^7.8.0",
       "@tarojs/cli": "3.3.12",
-      "babel-preset-taro": "3.3.12",
-      "babel-plugin-import": "^1.13.3",
-      "@vue/compiler-sfc": "^3.0.0",
-      "vue-loader": "^16.0.0-beta.8",
-      "eslint-plugin-vue": "^7.0.0",
-      "eslint-config-taro": "3.3.12",
-      "eslint": "^6.8.0",
-      "stylelint": "9.3.0",
-      "@typescript-eslint/parser": "^2.x",
+      "@tarojs/mini-runner": "3.3.12",
+      "@tarojs/webpack-runner": "3.3.12",
+      "@types/webpack-env": "^1.13.6",
       "@typescript-eslint/eslint-plugin": "^2.x",
-      "typescript": "^3.7.0"
-    }
+      "@typescript-eslint/parser": "^2.x",
+      "@vue/compiler-sfc": "^3.0.0",
+      "babel-plugin-import": "^1.13.3",
+      "babel-preset-taro": "3.3.12",
+      "eslint": "^6.8.0",
+      "eslint-config-taro": "3.3.12",
+      "eslint-plugin-vue": "^7.0.0",
+      "stylelint": "9.3.0",
+      "typescript": "^3.7.0",
+      "vue-loader": "^16.0.0-beta.8"
+    },
+    "packageManager": "yarn@3.1.0"
   }
 
 yarn manifest: 
@@ -1355,6 +1356,14 @@ Lockfile:
       sass "^1.34.0"
       vue-router "^4.0.11"
   
+  "@nutui/nutui@^3.1.10":
+    version "3.1.10"
+    resolved "https://registry.yarnpkg.com/@nutui/nutui/-/nutui-3.1.10.tgz#df20d8710f66edc4f8f1fcac3fd7a7edce12999e"
+    integrity sha512-y3qz5eqnUPS18c/9syirVFZJcGPtHUyZSDrYl9Sdb/FmDu4+2s+p+C0JHr7e2p/nBvgyzlP1ugA4A6WgATKRNg==
+    dependencies:
+      sass "^1.34.0"
+      vue-router "^4.0.11"
+  
   "@pmmmwh/react-refresh-webpack-plugin@0.4.3":
     version "0.4.3"
     resolved "https://registry.yarnpkg.com/@pmmmwh/react-refresh-webpack-plugin/-/react-refresh-webpack-plugin-0.4.3.tgz#1eec460596d200c0236bf195b078a5d1df89b766"
@@ -2210,7 +2219,7 @@ Lockfile:
       "@vue/compiler-dom" "3.2.21"
       "@vue/shared" "3.2.21"
   
-  "@vue/devtools-api@^6.0.0-beta.18":
+  "@vue/devtools-api@^6.0.0-beta.11", "@vue/devtools-api@^6.0.0-beta.18":
     version "6.0.0-beta.20"
     resolved "https://registry.yarnpkg.com/@vue/devtools-api/-/devtools-api-6.0.0-beta.20.tgz#b5405c9a84fb44687d05e7c4c7854b1639141106"
     integrity sha512-21u2jFOk8jbAneeGpDwZQ0W66RJa0IBDUyVl6SgKnn2cRFjLWzKj+ukXjpLhYr1KASyCe5E5U4jXwChVo0YUAw==
@@ -14060,6 +14069,13 @@ Lockfile:
       "@vue/runtime-dom" "3.2.21"
       "@vue/server-renderer" "3.2.21"
       "@vue/shared" "3.2.21"
+  
+  vuex@^4.0.2:
+    version "4.0.2"
+    resolved "https://registry.yarnpkg.com/vuex/-/vuex-4.0.2.tgz#f896dbd5bf2a0e963f00c67e9b610de749ccacc9"
+    integrity sha512-M6r8uxELjZIK8kTKDGgZTYX/ahzblnzC4isU1tpmEuOIIKmV+TRdc+H4s8ds2NuZ7wpUTdGRzJRtoj+lI+pc0Q==
+    dependencies:
+      "@vue/devtools-api" "^6.0.0-beta.11"
   
   w3c-hr-time@^1.0.1:
     version "1.0.2"
