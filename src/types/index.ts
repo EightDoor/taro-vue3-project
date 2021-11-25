@@ -9,3 +9,8 @@ export interface CallLoadMoreType {
   page: number;
   size: number;
 }
+
+export interface TabsListType {
+    title: string;
+    slotName: string
+}

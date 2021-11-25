@@ -5,6 +5,8 @@ import {
   BackTop,
   InfiniteLoading,
   Divider,
+  Tabs,
+  TabPane,
 } from '@nutui/nutui-taro';
 
 const register = (app: any) => {
@@ -13,7 +15,9 @@ const register = (app: any) => {
     .use(BackTop)
     .use(Icon)
     .use(InfiniteLoading)
-    .use(Divider);
+    .use(Divider)
+    .use(Tabs)
+    .use(TabPane);
 };
 
 export default register;

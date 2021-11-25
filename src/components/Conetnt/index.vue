@@ -3,23 +3,40 @@
     <nav-bar :title="title" :isLeft="isLeft">
       <slot name="navBarRight" />
     </nav-bar>
-
+    <nut-tabs v-if="list.length > 0" v-model="selectTab">
+      <nut-tabpane
+        :title-scroll="true"
+        v-for="(item, index) in list"
+        :key="index"
+        :title="item.title"
+       >
+        <list-loading
+          :refresh="refresh"
+          @loadMore="loadMore"
+          @onScroll="onScroll"
+          @goTop="goTop"
+          :isTab="true"
+        >
+          <slot :name="item.slotName"/>
+        </list-loading>
+      </nut-tabpane>
+    </nut-tabs>
     <list-loading
+      v-else
       :refresh="refresh"
       @loadMore="loadMore"
       @onScroll="onScroll"
       @goTop="goTop"
-      :isTab="isTab"
     >
       <slot />
     </list-loading>
   </view>
 </template>
 <script lang="ts">
-import { defineComponent, ref } from 'vue';
+import { defineComponent, PropType, ref } from 'vue';
 import NavBar from '@src/components/NavBar/index.vue';
 import ListLoading from '../ListLoading/index.vue';
-import { CallLoadMoreType } from '../../types';
+import { CallLoadMoreType, TabsListType } from '../../types';
 import style from './index.module.scss';
 
 export default defineComponent({
@@ -35,13 +52,9 @@ export default defineComponent({
     },
     isLeft: {
       type: Boolean,
-      default: false,
+      default: true,
     },
     refresh: {
-      type: Boolean,
-      default: false,
-    },
-    isTab: {
       type: Boolean,
       default: false,
     },
@@ -59,20 +72,12 @@ export default defineComponent({
       default: 30,
     },
     list: {
-      type: Array,
+      type: Array as PropType<TabsListType[]>,
       default: () => [],
     },
   },
-  emits: [
-    'refresh',
-    'loadMore',
-    'goTop',
-    'changeIndex',
-  ],
+  emits: ['refresh', 'loadMore', 'goTop', 'changeIndex'],
   setup(props, { emit }) {
-    const pageNum = ref(1);
-    const pageSize = ref(10);
-
     function loadMore(data: CallLoadMoreType) {
       emit('loadMore', data);
     }
@@ -92,9 +97,9 @@ export default defineComponent({
       emit('changeIndex', val);
     }
 
+    const selectTab = ref(0);
+
     return {
-      pageNum,
-      pageSize,
       loadMore,
       onScroll,
       goTop,
@@ -104,6 +109,9 @@ export default defineComponent({
       defaultTextColor,
 
       style,
+
+      // tabs
+      selectTab,
     };
   },
 });
