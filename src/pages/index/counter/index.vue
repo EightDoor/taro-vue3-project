@@ -13,7 +13,7 @@ import {defineComponent, computed} from 'vue';
 import {useStore} from 'vuex';
 import NavBar from '@src/components/NavBar/index.vue';
 import styles from './index.module.scss';
-
+   
 export default defineComponent({
   name: 'Counter',
   components: {
