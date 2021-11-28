@@ -166,7 +166,7 @@ export default defineComponent({
         // 是否为负数
         const isF = Math.sign(movingPosition);
         if (isF === -1) {
-        //   log.d(movingPosition, '结果值');
+          log.d(movingPosition, '结果值');
 
           moveYPosition.value = movingPosition;
         }
@@ -181,8 +181,7 @@ export default defineComponent({
           // 超时自动关闭
           setTimeout(() => {
             if (refreshStatus.value === ReeshStatusType.FRESH_LOADING) {
-              refreshStatus.value = ReeshStatusType.DONE;
-              Toast.showMsg('刷新超时', 'none');
+              refreshStatus.value = ReeshStatusType.NONE;
             }
           }, Config.dressingBrushTime);
           refreshFun();

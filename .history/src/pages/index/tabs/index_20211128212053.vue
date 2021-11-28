@@ -1,5 +1,5 @@
 <template>
-    <custom-content title="tabs" :isTab="true" :refresh="true" :list="list">
+    <custom-content title="tabs" :isTab="true" :list="list">
         <template v-for="item in list" v-slot:[item.slotName]>
             {{item.title}}
         </template>

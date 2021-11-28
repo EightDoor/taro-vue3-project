@@ -181,8 +181,7 @@ export default defineComponent({
           // 超时自动关闭
           setTimeout(() => {
             if (refreshStatus.value === ReeshStatusType.FRESH_LOADING) {
-              refreshStatus.value = ReeshStatusType.DONE;
-              Toast.showMsg('刷新超时', 'none');
+              refreshStatus.value = ReeshStatusType.NONE;
             }
           }, Config.dressingBrushTime);
           refreshFun();
