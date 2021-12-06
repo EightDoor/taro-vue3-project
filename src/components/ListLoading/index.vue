@@ -38,6 +38,7 @@
 import {
   defineComponent, ref, nextTick, reactive, watch,
 } from 'vue';
+import _ from 'lodash';
 import Toast from '../../utils/toast';
 import log from '../../utils/log';
 import { CallLoadMoreType, ReeshStatusType } from '../../types';
@@ -116,8 +117,7 @@ export default defineComponent({
       }
     }
     // 滚动
-    function onScroll(e: any) {
-    //   log.d(e.detail.scrollTop, '滚动');
+    const onScroll = _.throttle((e) => {
       if (e?.detail?.scrollTop) {
         scrollOldTop.value = e.detail.scrollTop;
         emit('onScroll', e);
@@ -127,7 +127,7 @@ export default defineComponent({
           isShowTop.value = 'none';
         }
       }
-    }
+    }, 1000);
     function refreshFun() {
       emit('loadMore', {
         done: (val: any[]) => done(val, 'refresh'),
