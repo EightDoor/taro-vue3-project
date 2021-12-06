@@ -1,0 +1,25 @@
+
+.content_container {
+  padding: 15px;
+}
+.scroll_view {
+  height: calc(100vh - 20PX -  50PX);
+}
+.scroll_view_tab {
+  height: calc(100vh - 20PX - 50PX - 50PX - 48PX);
+  border: 1px solid red;
+}
+.content_image {
+  display: none;
+  position: fixed;
+  bottom: 15px;
+  right: 15px;
+  width: 20px;
+  height: 20px;
+}
+.loadMoreText {
+    font-size: 15px;
+    text-align: center;
+    padding: 15px 0;
+    width: 100%;
+}

@@ -1,15 +1,14 @@
 <template>
   <view>
     <nut-navbar v-if="isNavBarShow()"
-      @on-click-title="titleClick"
-      @on-click-right="rightClick"
-      @on-click-back="backEvent"
-      :left-show="leftShow"
-      :desc="desc"
-      :title="title"
-      :tit-icon="titIcon"
-      :icon="icon"
-    ></nut-navbar>
+    @on-click-title="titleClick"
+    @on-click-right="rightClick"
+    @on-click-back="backEvent"
+    :left-show="isLeft"
+    :desc="desc"
+    :title="title"
+    :tit-icon="titIcon"
+    :icon="icon"></nut-navbar>
 
     <view :class="isNavBarShow()?styles.content: styles.c_height_other">
       <slot/>
@@ -19,7 +18,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { navigateBack } from '@tarojs/taro';
-import compatible from '@src/components/compatible';
+import compatible from '../compatible';
 import styles from './index.module.scss';
 
 export default defineComponent({
@@ -34,7 +33,7 @@ export default defineComponent({
       type: String,
       default: '',
     },
-    leftShow: {
+    isLeft: {
       type: Boolean,
       default: true,
     },

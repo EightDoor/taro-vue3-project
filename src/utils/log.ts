@@ -1,22 +1,42 @@
-export default  {
-    s(data: any, title?: string) {
-        console.group(`${title} success`)
-        console.log(data)
-        console.groupEnd()
-    },
-    d(data: any, title?: string) {
-        console.group(`${title} debug`)
-        console.log(data)
-        console.groupEnd()
-    },
-    e(data: any, title?: string) {
-        console.group(`${title} error`)
-        console.log(data)
-        console.groupEnd()
-    },
-    i(data: any, title?: string) {
-        console.group(`${title} info`)
-        console.log(data)
-        console.groupEnd()
-    },
-}
+const log = {
+  /**
+     * success
+     * @param val
+     */
+  s: (val: any, title?: string) => {
+    console.group(`${title ?? 'success'} ->`);
+    console.log(val);
+    console.groupEnd();
+  },
+
+  /**
+     * info
+     * @param val
+     */
+  i: (val: any, title?: string) => {
+    console.group(`${title ?? 'info'} ->`);
+    console.log(val);
+    console.groupEnd();
+  },
+
+  /**
+     * debug
+     * @param val
+     */
+  d: (val: any, title?: string) => {
+    console.group(`${title ?? 'debug'} ->`);
+    console.log(val);
+    console.groupEnd();
+  },
+  /**
+     * error
+     * @param val
+     */
+  e: (val: any, title?: string) => {
+    console.group(`${title ?? 'error'} ->`);
+    console.log(val);
+    console.groupEnd();
+  },
+};
+
+export default log;

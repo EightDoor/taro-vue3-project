@@ -1,5 +1,7 @@
 <template>
-  <view class="refresh" :style="{height: height, display: formatDisplay, lineHeight: height}">
+  <view :class="styles.refresh"
+  :style="{height: height, display: formatDisplay, lineHeight: height}"
+  >
     <text>{{formatText(refreshStatus)}}</text>
   </view>
 </template>
@@ -10,6 +12,7 @@ import {
 } from 'vue';
 import { ReeshStatusType } from '../../types';
 import utils from '../../utils/index';
+import styles from './refresh.module.scss';
 
 export default defineComponent({
   name: 'ZkCommRefresh',
@@ -75,14 +78,9 @@ export default defineComponent({
       formatDisplay,
       height,
       formatText,
+
+      styles,
     };
   },
 });
 </script>
-<style scoped lang="scss">
-.refresh {
-  height: 0;
-  margin-bottom: 15px;
-  text-align: center;
-}
-</style>
