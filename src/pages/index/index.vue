@@ -14,33 +14,32 @@
 </template>
 
 <script lang="ts">
+import { navigateTo } from '@tarojs/taro';
+import NavBar from '@src/components/NavBar/index.vue';
 import styles from './index.module.scss';
-import {navigateTo} from '@tarojs/taro';
-import NavBar from '@/src/components/NavBar/index.vue';
 
 export default {
-  name: 'Index',
+  name: 'HomeIndex',
   components: {
     NavBar,
   },
-  setup(){
-
+  setup() {
     function goToVuex() {
       navigateTo({
-        url: '/pages/index/counter/index'
-      })
+        url: '/pages/index/counter/index',
+      });
     }
 
     function goToListLoading() {
       navigateTo({
         url: '/pages/index/list/index',
-      })
+      });
     }
     return {
       styles,
       goToVuex,
-      goToListLoading
-    }
-  }
-}
+      goToListLoading,
+    };
+  },
+};
 </script>

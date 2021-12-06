@@ -1,33 +1,44 @@
 <template>
-  <scroll-view :class="isNavBarShow()?styles.content: styles.c_height_other" :scroll-y="true" @scrolltoupper="upper" @scrolltolower="lower" @scroll="scroll" :scroll-top="scrollTop">
+  <scroll-view
+    :class="isNavBarShow() ? styles.content : styles.c_height_other"
+    :scroll-y="true"
+    @scrolltoupper="upper"
+    @scrolltolower="lower"
+    @scroll="scroll"
+    :scroll-top="scrollTop"
+  >
     <view :class="styles.content_slot">
-      <slot/>
+      <slot />
     </view>
     <nut-divider dashed>
-      {{refreshHasMore?loadMoreLoadingText: loadNoMore}}
+      {{ refreshHasMore ? loadMoreLoadingText : loadNoMore }}
     </nut-divider>
   </scroll-view>
 </template>
 <script lang="ts">
-import {defineComponent, toRefs, ref, reactive, watch} from 'vue';
-import utils from '@/src/utils';
-import  styles from '../NavBar/index.module.scss';
-import {BaseEventOrigFunction} from "@tarojs/components";
-import log from "@/src/utils/log";
-import compatible from "@/src/components/compatible";
+import {
+  defineComponent, toRefs, ref, reactive, watch,
+} from 'vue';
+import { BaseEventOrigFunction } from '@tarojs/components';
+import utils from '@src/utils';
+import log from '@src/utils/log';
+import compatible from '@src/components/compatible';
+import styles from '../NavBar/index.module.scss';
 
 export interface ListLoadingType {
-  defaultPageSize?: number;
-  defaultPageNum?: number;
-  list: Array<any>
+  defaultPageSize: number;
+  defaultPageNum: number;
+  refreshList: any[];
+  list?: any[];
+  allList?: any[]
 }
 export default defineComponent({
-  name: "ListLoading",
-  emits: ["load", "refresh"],
+  name: 'ListLoading',
+  emits: ['load', 'refresh'],
   props: {
     list: {
       type: Array,
-      default: [],
+      default: () => [],
       required: true,
     },
     defaultPageSize: {
@@ -40,83 +51,86 @@ export default defineComponent({
     },
     loadMoreLoadingText: {
       type: String,
-      default: "加载中..."
+      default: '加载中...',
     },
     loadNoMore: {
       type: String,
-      default: "没有更多数据了"
-    }
+      default: '没有更多数据了',
+    },
   },
-  setup(props, {emit}) {
-    const isFirst = ref(false)
+  setup(props, { emit }) {
+    const isFirst = ref(false);
     const refreshHasMore = ref(true);
     const moreData = reactive({
       loadMoreLoadingText: props.loadMoreLoadingText,
-      loadNoMore: props.loadNoMore
-    })
+      loadNoMore: props.loadNoMore,
+    });
     const data = reactive<ListLoadingType>({
       refreshList: props.list,
       defaultPageSize: props.defaultPageSize,
       defaultPageNum: props.defaultPageNum,
     });
 
-    const isMoreFun = ()=>{
-      if(data.refreshList.length < data.defaultPageSize) {
-        refreshHasMore.value = false
-        return false
-      }else {
-        return true;
+    const isMoreFun = () => {
+      if (data.refreshList.length < data.defaultPageSize) {
+        refreshHasMore.value = false;
+        return false;
       }
-    }
+      return true;
+    };
     const refreshLoadMore = async () => {
-      if(isMoreFun()) {
+      if (isMoreFun()) {
         data.defaultPageNum += 1;
-        emit("load", {
+        emit('load', {
           page: {
             pageSize: data.defaultPageSize,
             pageNum: data.defaultPageNum,
           },
-          done: (list)=>{
+          done: (list) => {
             data.refreshList = list;
-            isMoreFun()
+            isMoreFun();
           },
-        })
+        });
       }
     };
 
     const refresh = () => {
-       emit("refresh", (list)=>{
-         data.defaultPageNum = 1;
-         utils.showMsg("刷新成功")
-         refreshHasMore.value = true;
-         data.refreshList = list
-      })
-    }
+      emit('refresh', (list) => {
+        data.defaultPageNum = 1;
+        utils.showMsg('刷新成功');
+        refreshHasMore.value = true;
+        data.refreshList = list;
+      });
+    };
 
-    const scrollTop = ref(0)
+    const scrollTop = ref(0);
 
     function upper(e: BaseEventOrigFunction<any>) {
       log.d(e, '顶部');
-      refresh()
+      refresh();
     }
     function lower(e: BaseEventOrigFunction<any>) {
-      log.d(e, "底部");
+      log.d(e, '底部');
       refreshLoadMore();
     }
     function scroll(e: BaseEventOrigFunction<any>) {
-//      log.d(e, "滚动");
+      //      log.d(e, "滚动");
     }
 
-    watch(()=>props.list, (newVal)=>{
-      if(!isFirst.value && newVal) {
-        data.refreshList = newVal;
-        isFirst.value = true;
-      }
-    })
+    watch(
+      () => props.list,
+      (newVal) => {
+        if (!isFirst.value && newVal) {
+          data.refreshList = newVal;
+          isFirst.value = true;
+        }
+      },
+    );
 
     function isNavBarShow() {
       return compatible.isCustomHeader;
     }
+
     return {
       refreshLoadMore,
       refreshHasMore,
@@ -132,11 +146,9 @@ export default defineComponent({
       scrollTop,
 
       isNavBarShow,
+
     };
-  }
-})
-
+  },
+});
 </script>
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>

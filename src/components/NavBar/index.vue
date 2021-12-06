@@ -1,6 +1,15 @@
 <template>
   <view>
-    <nut-navbar v-if="isNavBarShow()" @on-click-title="titleClick" @on-click-right="rightClick" @on-click-back="backEvent" :left-show="leftShow" :desc="desc" :title="title" :tit-icon="titIcon" :icon="icon"></nut-navbar>
+    <nut-navbar v-if="isNavBarShow()"
+      @on-click-title="titleClick"
+      @on-click-right="rightClick"
+      @on-click-back="backEvent"
+      :left-show="leftShow"
+      :desc="desc"
+      :title="title"
+      :tit-icon="titIcon"
+      :icon="icon"
+    ></nut-navbar>
 
     <view :class="isNavBarShow()?styles.content: styles.c_height_other">
       <slot/>
@@ -8,22 +17,22 @@
   </view>
 </template>
 <script lang="ts">
-import {defineComponent} from 'vue';
-import {navigateBack} from '@tarojs/taro';
-import compatible from '@/src/components/compatible';
-import  styles from './index.module.scss'
+import { defineComponent } from 'vue';
+import { navigateBack } from '@tarojs/taro';
+import compatible from '@src/components/compatible';
+import styles from './index.module.scss';
 
 export default defineComponent({
-  name: "NavBar",
+  name: 'NavBar',
   emits: ['titleClick', 'rightClick', 'backEvent'],
   props: {
     title: {
       type: String,
-      default: ""
+      default: '',
     },
     desc: {
       type: String,
-      default: "",
+      default: '',
     },
     leftShow: {
       type: Boolean,
@@ -31,26 +40,25 @@ export default defineComponent({
     },
     titIcon: {
       type: String,
-      default: "",
+      default: '',
     },
     icon: {
       type: String,
-      default: "",
-    }
+      default: '',
+    },
   },
-  setup (props: any, {emit}) {
-
+  setup(props: any, { emit }) {
     function rightClick() {
-      emit("rightClick")
+      emit('rightClick');
     }
 
     function titleClick() {
-      emit("titleClick")
+      emit('titleClick');
     }
 
     function backEvent() {
-      navigateBack()
-      emit("backEvent")
+      navigateBack();
+      emit('backEvent');
     }
 
     function isNavBarShow() {
@@ -65,7 +73,7 @@ export default defineComponent({
       isNavBarShow,
 
       styles,
-    }
-  }
-})
+    };
+  },
+});
 </script>

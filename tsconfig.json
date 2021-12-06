@@ -23,7 +23,7 @@
       "global.d.ts"
     ],
     "paths": {
-      "@/src/*": ["src/*"]
+      "@src/*": ["src/*"]
     },
   },
   "exclude": [

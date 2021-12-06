@@ -22,7 +22,7 @@ const config = {
   },
   framework: 'vue3',
     alias: {
-        '@/src': path.resolve(__dirname, '..', 'src'),
+        '@src': path.resolve(__dirname, '..', 'src'),
     },
   mini: {
     postcss: {
