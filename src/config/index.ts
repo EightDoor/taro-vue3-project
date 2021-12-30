@@ -3,6 +3,8 @@ const Config = {
   triggerCriticalValue: 10,
   // 下拉刷新超时自动关闭 ms
   dressingBrushTime: 5000,
+
+  baseUrl: 'xxx',
 };
 
 export default Config;
