@@ -1,6 +1,7 @@
 import { request } from '@tarojs/taro';
 import log from '@src/utils/log';
 import Config from '@src/config';
+import qs from 'qs';
 
 interface method {
   /** HTTP 请求 OPTIONS */
@@ -25,10 +26,23 @@ const http = <T = any>(
   method?: keyof method,
   data?: any,
 ): Promise<T> => new Promise((resolve, reject) => {
+    const m = method ?? 'GET';
+    const isGet = m === 'GET';
+    let params = '';
+    if (isGet && data) {
+      params = qs.stringify(data, {
+        encodeValuesOnly: true,
+      });
+    }
+    const resultUrl = Config.baseUrl + url + (isGet && data ? `?${params}` : '');
     request({
-      url: Config.baseUrl + url,
+      url: resultUrl,
       method: method ?? 'GET',
-      data,
+      data: isGet ? null : data,
+      header: {
+        'content-type': 'application/json', // 默认值
+      },
+      mode: 'cors',
     })
       .then((res) => {
         log.d(res.data, '请求的数据');
